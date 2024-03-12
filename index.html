@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="shorcut icon" href="https://cdn-icons-png.flaticon.com/512/6742/6742656.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+
+        body {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            background-color: antiquewhite;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+
+        .header {
+            margin-top: 30px;
+            background-color: #fde0ba;
+            padding: 100px;
+            box-shadow:-5px 6px #dba865;
+        }
+        
+
+        input {
+            border-radius: 20px;
+            border: 0;
+            width: 300px;
+            height: 30px;
+            box-shadow: -2px 3px#ad9270a2;
+        }
+
+        button {
+            border-radius: 10px;
+            background-color: #75a775;
+            border: 0;
+            box-shadow: 2px 3px #2a3b2a;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: 200px;
+            color: #bb7f32;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+
+    <h1>Lista de Tarefas</h1>
+    <input type="text" id="taskInput" placeholder="Digite uma tarefa">
+
+    <button onclick="addTask()"> Adicionar Tarefa</button>
+    
+    <ul id="taskList">
+
+    </div>
+
+    </ul>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById ("taskInput");
+
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                var taskList = document.getElementById("taskList");
+
+                var li = document.createElement("li");
+                li.className = "taskItem";
+
+                li.innerHTML = taskText + '<button onclick="removeTask(this)">Remover</button>';
+
+                taskList.appendChild(li);
+
+                taskInput.value = "";
+            } else {
+                alert("Por favor, insira uma tarefa válida.");
+            }
+
+        }
+
+        function removeTask(button) {
+            var li = button.parentNode;
+            var ul = li.parentNode;
+            ul.removeChild(li);
+        }
+
+        document.getElementById("taskInput").addEventListener ("keypress", function (event) {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+
+    </script>
+
+    <footer>Kimberly 2024 &copy;</footer>
+    
+</body>
+</html>
